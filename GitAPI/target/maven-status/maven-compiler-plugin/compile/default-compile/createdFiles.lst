@@ -1,0 +1,15 @@
+br/com/gitapi/model/RepositorioModel.class
+br/com/gitapi/excecao/RegistroNaoEncontrado.class
+br/com/gitapi/chamada/api/ApiRestGit.class
+br/com/gitapi/DTO/Item.class
+br/com/gitapi/bo/RepositorioBO.class
+br/com/gitapi/dao/GenericDAO.class
+br/com/gitapi/DTO/Owner.class
+br/com/gitapi/dao/impl/RepositorioImpl.class
+br/com/gitapi/singleton/MainConfig.class
+br/com/gitapi/dao/impl/GenericDAOImpl.class
+br/com/gitapi/dao/RepositorioDAO.class
+br/com/gitapi/excecao/CommitException.class
+br/com/gitapi/singleton/EntityManagerFactorySingleton.class
+br/com/gitapi/DTO/Repositorio.class
+br/com/gitapi/managebean/RepositorioBean.class

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+
+<meta name="description" content="Free Web tutorials" />
+<meta name="keywords" content="HTML,CSS,XML,JavaScript" />
+<meta name="author" content="Lucas" />
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous"></link>
+
+<title>Github API</title>
+</head>
+
+<h:body>
+
+	<h:form id="busca">
+	
+	<h1 class="text-center">Projeto</h1>
+	
+		<div class="container">
+			
+			<h:messages/>
+			<!-- Botao de pesquisa  -->
+			 <div class="form-group">
+				<h:outputLabel value="Insira o nome do repositorio" styleClass="form-text text-muted" />
+				<h:inputText styleClass="form-control" value="#{repositorioBean.nomeRepositorio}">
+					<f:passThroughAttribute name="placeholder" value="Digite nome do repositorio" />           
+				</h:inputText>
+
+			</div>
+			
+			<!-- Botao pesquisar -->
+			<div class="form-group">
+				<h:commandButton styleClass="btn btn-primary" value="Pesquisar" action="#{repositorioBean.buscarPorNome}"></h:commandButton>
+			</div>
+					
+			
+			<!-- Lista de adicionados recuperado do banco -->
+			<h2> Repositorios Adicionados </h2>
+			
+			<h:dataTable styleClass="table" var="item" value="#{repositorioBean.repositorioModelList}">
+			
+				<h:column row="1">
+					<f:facet name="header">
+						<h:outputText value="Id" />
+					</f:facet>
+						<h:outputText value="#{item.id}" />
+				</h:column>
+				
+				
+				<h:column row="1">
+					<f:facet name="header">
+						<h:outputText value="Nome do repositorio" />
+					</f:facet>
+						<h:outputText value="#{item.nomeRepositorio}" />
+				</h:column>
+				
+				<h:column row="1">
+					<f:facet name="header">
+						<h:outputText value="Link do repositorio" />
+					</f:facet>
+					
+						<!-- <h:outputText value="#{item.linkRepositorio}" /> -->
+						<h:commandLink  styleClass="btn btn-sucess" action="#{repositorioBean.redirectParaGitHub}" value="Link" >
+						<f:param value="#{item.linkRepositorio}" name="link"></f:param>
+					</h:commandLink>
+				</h:column>
+				
+				<h:column row="1">
+					<f:facet name="header">
+						<h:outputText value="Linguagem" />
+					</f:facet>
+						<h:outputText value="#{item.linguagem}" />
+				</h:column>
+				
+				<h:column row="1">
+					<f:facet name="header">
+						<h:outputText value="Descricao" />
+					</f:facet>
+						<h:outputText value="#{item.descricao}" />
+				</h:column>
+				
+				<h:column row="2">
+					<f:facet name="header">
+						<h:outputText value="Remover" />
+					</f:facet>
+					<h:commandLink  styleClass="btn btn-danger" action="#{repositorioBean.removerRepositorio}" value="Remover" >
+						<f:param value="#{item.id}" name="idParam"></f:param>
+					</h:commandLink>
+				</h:column>
+				
+			</h:dataTable>
+			
+			<!-- Lista de repositorio recuperado da API -->
+			
+			<h2> Lista de Repositorio </h2>
+			
+			<h:dataTable styleClass="table" var="item" value="#{repositorioBean.listaRepositorioDTO}">
+				
+				<h:column row="1">
+					<f:facet name="header">
+						<h:outputText value="Linguagem" />
+					</f:facet>
+						<h:outputText value="#{item.name}" />
+				</h:column>
+				
+				<h:column row="2">
+					<f:facet name="header">
+						<h:outputText value="Repositorio" />
+					</f:facet>
+	
+					<h:commandLink value="#{item.fullName}" action="#{repositorioBean.exibirRepositorioPorNome}">
+						<f:param value="#{item.fullName}" name="nome"></f:param>
+					</h:commandLink>
+					
+				</h:column>
+				
+			</h:dataTable>
+			
+		
+			
+			</div>
+	</h:form>
+</h:body>
+
+<!-- Última versão JavaScript compilada e minificada -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+	crossorigin="anonymous"></script>
+
+</html>
